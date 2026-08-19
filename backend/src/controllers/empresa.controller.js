@@ -34,3 +34,4 @@ export async function getEmpresa(req, res) {
       error.message,
     );
   }
+}
