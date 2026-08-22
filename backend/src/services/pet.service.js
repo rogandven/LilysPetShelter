@@ -7,7 +7,7 @@ import { getPrintableId } from "../utils/service.utils";
 
 const petRepository = AppDataSource.getRepository(Pet);
 
-export const getPet = async (petId) => {
+export const getPetService = async (petId) => {
     try {
         const pet = await petRepository.findOne({ where: { id: petId } } );
         return new ServiceResponse(
@@ -19,9 +19,9 @@ export const getPet = async (petId) => {
         console.error(error);
         return new ServiceResponse(500, `Error al encontrar a ${getPrintableId(Number(petId))}`, null);
     }
-}
+};
 
-export const getPets = async (userId, breed) => {
+export const getManyPetsService = async (userId, breed) => {
     try {
         const pets = await petRepository.find( { where: {
             owner_id: (userId ? userId : undefined),
@@ -38,9 +38,9 @@ export const getPets = async (userId, breed) => {
         console.error(error);
         return new ServiceResponse(500, "Error al encontrar mascotas", null);
     }
-}
+};
 
-export const createPet = async (data) => {
+export const createPetService = async (data) => {
     try {
         const savedPet = await petRepository.save(petRepository.create(data));
         const isEmpty = !savedPet || !(Array.isArray(savedPet)) || (savedPet.length === 0);
@@ -54,9 +54,9 @@ export const createPet = async (data) => {
         console.error(error);
         return new ServiceResponse(500, "Error al registrar mascota", null);
     }
-}
+};
 
-export const updatePet = async (id, oldData, newData) => {
+export const updatePetService = async (id, oldData, newData) => {
     try {
         const editedPet = Object.assign({}, oldData, newData);
         const savedPet = await petRepository.save(editedPet);
@@ -65,9 +65,9 @@ export const updatePet = async (id, oldData, newData) => {
         console.error(error);
         return new ServiceResponse(500, `Error al actualizar a ${getPrintableId(id)}`, null);
     }
-}
+};
 
-export const deletePet = async (id) => {
+export const deletePetService = async (id) => {
     try {
         const deletedPet = await petRepository.delete( { where: petResponse.data } );
         if (deletedPet.affected !== 1) {
@@ -80,8 +80,8 @@ export const deletePet = async (id) => {
         console.error(error);
         return new ServiceResponse(500, `Error al actualizar a ${getPrintableId(id)}`, null);
     }
-}
+};
 
-export const adoptPet = async (userId, petData) => {
+export const adoptPetService = async (userId, petData) => {
     return await updatePet(petData?.id || 0, petData, { owner_id : userId });  
-}
+};
