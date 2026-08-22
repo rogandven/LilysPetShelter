@@ -1,9 +1,9 @@
 "use strict";
 
-import ServiceResponse from "../classes/ServiceResponse";
-import { AppDataSource } from "../config/configDb";
-import Pet from "../entity/pet.entity";
-import { getPrintableId } from "../utils/service.utils";
+import ServiceResponse from "../classes/ServiceResponse.ts";
+import { AppDataSource } from "../config/configDb.js";
+import Pet from "../entity/pet.entity.js";
+import { getPrintableId } from "../utils/service.utils.ts";
 
 const petRepository = AppDataSource.getRepository(Pet);
 

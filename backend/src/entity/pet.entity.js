@@ -1,6 +1,6 @@
 "use strict";
 import { EntitySchema } from "typeorm";
-import { DEFAULT_OWNER } from "../constants/pet.constants";
+import { DEFAULT_OWNER } from "../constants/pet.constants.js";
 
 const PetSchema = new EntitySchema({
   name: "Pet",

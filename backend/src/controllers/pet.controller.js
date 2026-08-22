@@ -1,8 +1,8 @@
 "use strict";
 
-import { handleErrorClient, handleErrorServer, handleSuccess } from "../handlers/responseHandlers";
+import { handleErrorClient, handleErrorServer, handleSuccess } from "../handlers/responseHandlers.js";
 import { createPetService, deletePetService, getManyPetsService, getPetService, updatePetService 
-} from "../services/pet.service";
+} from "../services/pet.service.js";
 
 export async function getPet(req, res) {
   try {

@@ -1,1 +1,0 @@
-export const DEFAULT_OWNER: number = 1;
