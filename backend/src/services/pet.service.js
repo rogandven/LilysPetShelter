@@ -12,7 +12,8 @@ export const getPetService = async (petId) => {
         const pet = await petRepository.findOne({ where: { id: petId } } );
         return new ServiceResponse(
             pet ? 200 : 404, 
-            pet ? `¡${pet.name || getPrintableId(Number(petId))} encontrad@ con éxito!` : `${getPrintableId(petId)}`,
+            pet ? `¡${pet.name || getPrintableId(Number(petId))} encontrad@ con éxito!` 
+            : `${getPrintableId(petId)} no encontrad@`,
             pet
         );
     } catch (error) {
@@ -43,12 +44,11 @@ export const getManyPetsService = async (userId, breed) => {
 export const createPetService = async (data) => {
     try {
         const savedPet = await petRepository.save(petRepository.create(data));
-        const isEmpty = !savedPet || !(Array.isArray(savedPet)) || (savedPet.length === 0);
 
         return new ServiceResponse(
-            isEmpty ? 201 : 200,
-            isEmpty ? "No se pudo crear ninguna mascota" : "¡Mascota creada con éxito!",
-            isEmpty ? null : savedPet[0]
+            (!savedPet) ? 204 : 201,
+            (!savedPet) ? "No se pudo crear ninguna mascota" : "¡Mascota creada con éxito!",
+            (!savedPet) ? null : savedPet
         );
     } catch (error) {
         console.error(error);
@@ -67,18 +67,18 @@ export const updatePetService = async (id, oldData, newData) => {
     }
 };
 
-export const deletePetService = async (id) => {
+export const deletePetService = async (id, oldData) => {
     try {
-        const deletedPet = await petRepository.delete( { where: petResponse.data } );
+        const deletedPet = await petRepository.delete({ id: id });
         if (deletedPet.affected !== 1) {
             return new ServiceResponse(500, 
-                `No se ha podido borrar a ${petResponse?.data?.name || getPrintableId(id)}`, null);
+                `No se ha podido borrar a ${oldData?.name || getPrintableId(id)}`, null);
         }
         return new ServiceResponse(200, 
-            `¡${petResponse?.data?.name || getPrintableId(id)} eliminad@ con éxito!`, null);
+            `¡${oldData?.name || getPrintableId(id)} eliminad@ con éxito!`, null);
     } catch (error) {
         console.error(error);
-        return new ServiceResponse(500, `Error al actualizar a ${getPrintableId(id)}`, null);
+        return new ServiceResponse(500, `Error al eliminar a ${getPrintableId(id)}`, null);
     }
 };
 

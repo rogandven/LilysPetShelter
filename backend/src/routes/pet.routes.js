@@ -13,7 +13,7 @@ router
   .get("/getmany", getManyPets)
   .get("/get/:id", getPet)
   .post("/create", createPet)
-  .patch("/update", updatePet)
-  .delete("/delete", deletePet);
+  .patch("/update/:id", updatePet)
+  .delete("/delete/:id", deletePet);
 
 export default router;

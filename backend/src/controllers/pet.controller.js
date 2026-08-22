@@ -61,16 +61,17 @@ export async function updatePet(req, res) {
 export async function deletePet(req, res) {
   try {
     const id = req?.params?.id || 0; //// TODO: add ID validation
-    const petToDelete = await deletePetService(id);
+    const petToDelete = await getPetService(id);
     if (!(petToDelete.isSuccess())) {
       return handleErrorClient(res, petToDelete.statusCode, petToDelete.message, petToDelete.data);
     }
-    const serviceResult = await updatePetService(req?.params?.id || 0, petToUpdate.data, req?.body || {});
+    const serviceResult = await deletePetService(req?.params?.id || 0, petToDelete.data, req?.body || {});
     if (serviceResult.isSuccess()) {
       return handleSuccess(res, serviceResult.statusCode, serviceResult.message, serviceResult.data);
     }
     return handleErrorClient(res, serviceResult.statusCode, serviceResult.message, serviceResult.data);
   } catch (error) {
+    console.error(error);
     return handleErrorServer(res, 500, "Error interno del servidor");
   }
 }
