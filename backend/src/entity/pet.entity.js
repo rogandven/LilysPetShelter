@@ -70,6 +70,13 @@ const PetSchema = new EntitySchema({
       onUpdate: "CURRENT_TIMESTAMP",
       nullable: false,
     },
+    owner_id: {
+      type: "int",
+      foreignKey: {
+        target: "User",
+        inverseSide: "id",
+      },
+    }
   },
   indices: [
     {
@@ -78,6 +85,17 @@ const PetSchema = new EntitySchema({
       unique: true,
     },
   ],
+  relations: {
+    owner: {
+      type: "many-to-one",
+      target: "User",
+      inverseSide: "users",
+      joinColumn: {
+        name: "owner_id",
+        foreignKeyConstraintName: "FKX_OWNER",
+      }
+    }
+  }
 });
 
 export default PetSchema;
