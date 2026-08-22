@@ -3,13 +3,17 @@
 import ServiceResponse from "../classes/ServiceResponse.ts";
 import { AppDataSource } from "../config/configDb.js";
 import Pet from "../entity/pet.entity.js";
-import { getPrintableId } from "../utils/service.utils.ts";
+import { getPrintableId, normalizePetsAndUsers } from "../utils/service.utils.ts";
 
 const petRepository = AppDataSource.getRepository(Pet);
 
-export const getPetService = async (petId) => {
+export const getPetService = async (petId, relations) => {
     try {
-        const pet = await petRepository.findOne({ where: { id: petId } } );
+        const pet = await petRepository.findOne({ where: { id: petId }, 
+            relations: relations ? ["owner"] : undefined } );
+        if (pet && pet?.owner) {
+            delete pet?.owner?.password;
+        }
         return new ServiceResponse(
             pet ? 200 : 404, 
             pet ? `¡${pet.name || getPrintableId(Number(petId))} encontrad@ con éxito!` 
@@ -22,12 +26,12 @@ export const getPetService = async (petId) => {
     }
 };
 
-export const getManyPetsService = async (userId, breed) => {
+export const getManyPetsService = async (userId, breed, relations) => {
     try {
-        const pets = await petRepository.find( { where: {
+        const pets = normalizePetsAndUsers(await petRepository.find( { where: {
             owner_id: (userId ? userId : undefined),
             breed: (breed ? breed : undefined),
-        } } );
+        }, relations: relations ? ["owner"] : undefined } ));
         const isEmpty = (!pets || (pets.length === 0));
 
         return new ServiceResponse(
@@ -59,8 +63,6 @@ export const createPetService = async (data) => {
 export const updatePetService = async (id, oldData, newData) => {
     try {
         const editedPet = Object.assign({}, oldData, newData);
-        console.log(editedPet);
-        throw new Error();
         const savedPet = await petRepository.save(editedPet);
         return new ServiceResponse(200, "¡Mascota actualizada con éxito!", editedPet);
     } catch (error) {
@@ -87,3 +89,15 @@ export const deletePetService = async (id, oldData) => {
 export const adoptPetService = async (userId, petData) => {
     return await updatePetService(petData?.id || 0, petData, { owner_id : userId });  
 };
+
+/*
+export const getPetsAndUsers = async () => {
+    try {
+        const petsAndUsers = normalizePetsAndUsers(await petRepository.find({ relations: ["owner"] }));
+
+        console.log(petsAndUsers);
+    } catch (error) {
+
+    }
+}
+*/

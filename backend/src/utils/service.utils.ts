@@ -29,3 +29,28 @@ export const getPrintableId = (id: number): string => {
     }
     return `#${id}`;
 }
+
+export const normalizePetsAndUsers = (pets: any[]) => {
+    try {
+        if (!Array.isArray(pets)) {
+            throw new Error("invalid array given to normalizer");
+        }
+        const newPets = pets.map((pet) => {
+            try {
+                if (pet.owner) {
+                    delete pet?.owner?.password;
+                    return pet;
+                }
+            } catch (error) {
+                console.error(error);
+                return null;
+            }
+        }).filter((pet) => {
+            return pet !== null;
+        });
+        return newPets;
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
