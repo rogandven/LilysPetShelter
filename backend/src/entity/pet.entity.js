@@ -1,5 +1,6 @@
 "use strict";
 import { EntitySchema } from "typeorm";
+import { DEFAULT_OWNER } from "../constants/pet.constants";
 
 const PetSchema = new EntitySchema({
   name: "Pet",
@@ -76,6 +77,7 @@ const PetSchema = new EntitySchema({
         target: "User",
         inverseSide: "id",
       },
+      default: DEFAULT_OWNER,
     }
   },
   indices: [
