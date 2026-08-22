@@ -1,4 +1,4 @@
-import { isInRange, normalizeData, normalizeStatusCode } from "../utils/service.utils";
+import { isInRange, normalizeStatusCode } from "../utils/service.utils";
 
 export class ServiceResponse {
     private _statusCode: number = 500;
