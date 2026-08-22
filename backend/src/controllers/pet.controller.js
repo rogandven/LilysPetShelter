@@ -1,7 +1,7 @@
 "use strict";
 
 import { handleErrorClient, handleErrorServer, handleSuccess } from "../handlers/responseHandlers.js";
-import { createPetService, deletePetService, getManyPetsService, getPetService, updatePetService 
+import { adoptPetService, createPetService, deletePetService, getManyPetsService, getPetService, updatePetService 
 } from "../services/pet.service.js";
 
 export async function getPet(req, res) {
@@ -74,4 +74,22 @@ export async function deletePet(req, res) {
     console.error(error);
     return handleErrorServer(res, 500, "Error interno del servidor");
   }
+}
+
+export async function adoptPet(req, res) {
+  try {
+    const id = req?.params?.id || 0; //// TODO: add ID validation
+    const petToAdopt = await getPetService(id);
+    if (!(petToAdopt.isSuccess())) {
+      return handleErrorClient(res, petToAdopt.statusCode, petToAdopt.message, petToAdopt.data);
+    }
+    const serviceResult = await adoptPetService(req?.user?.id || 0, petToAdopt);
+    if (serviceResult.isSuccess()) {
+      return handleSuccess(res, serviceResult.statusCode, serviceResult.message, serviceResult.data);
+    }
+    return handleErrorClient(res, serviceResult.statusCode, serviceResult.message, serviceResult.data);
+  } catch (error) {
+    console.error(error);
+    return handleErrorServer(res, 500, "Error interno del servidor");
+  }  
 }

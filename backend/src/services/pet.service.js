@@ -59,6 +59,8 @@ export const createPetService = async (data) => {
 export const updatePetService = async (id, oldData, newData) => {
     try {
         const editedPet = Object.assign({}, oldData, newData);
+        console.log(editedPet);
+        throw new Error();
         const savedPet = await petRepository.save(editedPet);
         return new ServiceResponse(200, "¡Mascota actualizada con éxito!", editedPet);
     } catch (error) {
@@ -83,5 +85,5 @@ export const deletePetService = async (id, oldData) => {
 };
 
 export const adoptPetService = async (userId, petData) => {
-    return await updatePet(petData?.id || 0, petData, { owner_id : userId });  
+    return await updatePetService(petData?.id || 0, petData, { owner_id : userId });  
 };
