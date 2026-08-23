@@ -89,3 +89,60 @@ export const petIntegrityValidation = Joi.object({
         "string.isoDate": "La fecha de actualización debe ser una fecha.",
     }),    
 });
+
+export const petRegisterValidation = Joi.object({
+    name: Joi.any().required().messages({
+        "any.required": "El nombre es obligatorio.",
+    }),
+    date_of_birth: Joi.any().required().messages({
+        "any.required": "La fecha de nacimiento es obligatoria.",
+    }),
+    species: Joi.any().required().messages({
+        "any.required": "La especie es obligatoria.",
+    }),
+    breed: Joi.any().required().messages({
+        "any.required": "La raza es obligatoria.",
+    }),
+    price: Joi.any().required().messages({
+        "any.required": "El precio es obligatorio.",
+    }),
+    description: Joi.any().required().messages({
+        "any.required": "La descripción es obligatoria.",
+    }),
+    neutered: Joi.any().required().messages({
+        "any.required": "El estado de castramiento es obligatorio.",
+    }),
+    vaccinated: Joi.any().required().messages({
+        "any.required": "El estado de vacunamiento es obligatorio.",
+    }),
+    special_needs: Joi.any().required().messages({
+        "any.required": "El estado mental es obligatorio.",
+    }),
+    declawed: Joi.any().required().messages({
+        "any.required": "El estado de desgarramiento es obligatorio.",
+    }),
+    color: Joi.any().required().messages({
+        "any.required": "El color es obligatorio.",
+    }),   
+}).unknown(false).messages({
+    "any.unknown": "No se permiten campos adicionales.",
+    "object.unknown": "No se permiten campos adicionales.",
+});
+
+export const petUpdateValidation = Joi.object({
+    name: Joi.any(),
+    date_of_birth: Joi.any(),
+    species: Joi.any(),
+    breed: Joi.any(),
+    price: Joi.any(),
+    description: Joi.any(),
+    neutered: Joi.any(),
+    vaccinated: Joi.any(),
+    special_needs: Joi.any(),
+    declawed: Joi.any(),
+    color: Joi.any(),
+}).unknown(false).min(1).messages({
+    "any.unknown": "No se permiten campos adicionales.",
+    "object.unknown": "No se permiten campos adicionales.",
+    "object.min": "Debe proporcionar al menos un campo para actualizar.",
+});
