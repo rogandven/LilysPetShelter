@@ -1,6 +1,7 @@
 "use strict";
 import { EntitySchema } from "typeorm";
 import { DEFAULT_OWNER } from "../constants/pet.constants.js";
+import { MAX_SHORT_STRING, MAX_STRING } from "../constants/validation.constants.js";
 
 const PetSchema = new EntitySchema({
   name: "Pet",
@@ -13,7 +14,7 @@ const PetSchema = new EntitySchema({
     },
     name: {
       type: "varchar",
-      length: 255,
+      length: MAX_STRING,
       nullable: false,      
     },
     date_of_birth: {
@@ -22,12 +23,12 @@ const PetSchema = new EntitySchema({
     },
     species: {
       type: "varchar",
-      length: 64,
+      length: MAX_SHORT_STRING,
       nullable: false,    
     },
     breed: {
       type: "varchar",
-      length: 64,
+      length: MAX_SHORT_STRING,
       nullable: false,    
     },
     price: {
@@ -36,7 +37,7 @@ const PetSchema = new EntitySchema({
     },
     description: {
       type: "varchar",
-      length: 255,
+      length: MAX_STRING,
       nullable: false,
     },
     neutered: {
