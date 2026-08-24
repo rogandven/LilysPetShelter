@@ -87,6 +87,10 @@ export const petIntegrityValidation = Joi.object({
         "string.min": `La fecha de actualización debe tener por lo menos ${MIN_STRING} caracteres.`,
         "string.max": `La fecha de actualización no puede tener más de ${MAX_STRING} caracteres.`,
         "string.isoDate": "La fecha de actualización debe ser una fecha.",
+    }),
+    owner_id: Joi.custom(idValidationFunction),
+    relations: Joi.boolean().messages({
+        "boolean.base":"Se debe indicar si se van a mostrar las relaciones o no.",
     }),    
 });
 
@@ -145,4 +149,13 @@ export const petUpdateValidation = Joi.object({
     "any.unknown": "No se permiten campos adicionales.",
     "object.unknown": "No se permiten campos adicionales.",
     "object.min": "Debe proporcionar al menos un campo para actualizar.",
+});
+
+export const paramsValidation = Joi.object({
+    owner_id: Joi.any(),
+    breed: Joi.any(),
+    relations: Joi.any(),
+}).unknown(false).messages({
+    "any.unknown": "No se permiten campos adicionales.",
+    "object.unknown": "No se permiten campos adicionales.",
 });
