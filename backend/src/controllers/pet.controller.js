@@ -118,6 +118,11 @@ export async function deletePet(req, res) {
 
 export async function adoptPet(req, res) {
   try {
+    if ((req?.user?.id || 0) === DEFAULT_OWNER) {
+      return handleErrorClient(res, 400, "Error de autenticación", 
+      "Intento de adoptar una mascota con la cuenta maestra");
+    }
+
     const idValidationResult = validationHelper(req?.params || {}, [idValidation]);
     if (idValidationResult) {
       return handleErrorClient(res, 400, "Mascota no identificada", idValidationResult);
