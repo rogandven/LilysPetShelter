@@ -26,11 +26,11 @@ export const getPetService = async (petId, relations) => {
     }
 };
 
-export const getManyPetsService = async (userId, breed, relations) => {
+export const getManyPetsService = async (userId, species, relations) => {
     try {
         const pets = normalizePetsAndUsers(await petRepository.find( { where: {
             owner_id: (userId ? userId : undefined),
-            breed: (breed ? breed : undefined),
+            species: (species ? species : undefined),
         }, relations: relations ? ["owner"] : undefined } ));
         const isEmpty = (!pets || (pets.length === 0));
 

@@ -30,12 +30,14 @@ export async function getPet(req, res) {
 export async function getManyPets(req, res) {
   //// TODO: Permitir pasar parametros a esta función
   try {
-    const paramsValidationResult = validationHelper(req?.params || {}, [petIntegrityValidation, paramsValidation]);
+    const paramsValidationResult = validationHelper(req?.query || {}, [petIntegrityValidation, paramsValidation]);
     if (paramsValidationResult) {
       return handleErrorClient(res, 400, "Parámetros inválidos", paramsValidationResult);
     }    
 
-    const serviceResult = await getManyPetsService(null, null, true);
+    const serviceResult = await getManyPetsService(req?.query?.owner_id || null, 
+                                                  req?.query?.species || null, 
+                                                  req?.query?.relations);
     if (serviceResult.isSuccess()) {
       return handleSuccess(res, serviceResult.statusCode, serviceResult.message, serviceResult.data);
     }

@@ -24,7 +24,7 @@ export const petIntegrityValidation = Joi.object({
         "string.empty": "La especie no puede ser vacía.",
         "string.min": `La especie debe tener por lo menos ${MIN_STRING} caracteres.`,
         "string.max": `La especie no puede tener más de ${MAX_SHORT_STRING} caracteres.`,
-        "string.valid": `Solo se permiten las siguientes especies: ${VALID_SPECIES.join(", ")}`,
+        "any.only": `Solo se permiten las siguientes especies: ${VALID_SPECIES.join(", ")}`,
         "any.valid": `Solo se permiten las siguientes especies: ${VALID_SPECIES.join(", ")}`,
     }),
     breed: Joi.string()
@@ -153,7 +153,7 @@ export const petUpdateValidation = Joi.object({
 
 export const paramsValidation = Joi.object({
     owner_id: Joi.any(),
-    breed: Joi.any(),
+    species: Joi.any(),
     relations: Joi.any(),
 }).unknown(false).messages({
     "any.unknown": "No se permiten campos adicionales.",
