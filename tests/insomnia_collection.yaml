@@ -1,0 +1,543 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: LilysPetShelter
+meta:
+  id: wrk_275905f736084f209fd33d27a15b7f04
+  created: 1787529977080
+  modified: 1787529990549
+  description: ""
+collection:
+  - name: auth
+    meta:
+      id: fld_07333dc78586472e9ab9be56d7fe39ad
+      created: 1787549669925
+      modified: 1787551011911
+      sortKey: -1787549670325
+      description: ""
+    children:
+      - url: http://localhost:3000/api/auth/login
+        name: login
+        meta:
+          id: req_fed424ed8977498a99f2ad003e6c634b
+          created: 1787529977086
+          modified: 1787549679406
+          isPrivate: false
+          description: ""
+          sortKey: -1787549672684
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"email":"administrador2024@gmail.cl",
+            	"password":"admin1234"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/auth/register
+        name: register
+        meta:
+          id: req_e7bc7cc2b6014be18dda455e072d63a3
+          created: 1787544472544
+          modified: 1787549678196
+          isPrivate: false
+          description: ""
+          sortKey: -1787549672584
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"rut":"71.351.237-0",
+            	"nombreCompleto":"Juanito Pérez Rosalez",
+            	"email":"jperez1234@gmail.cl",
+            	"password":"jperez1234"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/auth/logout
+        name: logout
+        meta:
+          id: req_c048f50e3e484b6db220b14e28ed6727
+          created: 1787549556946
+          modified: 1787549675212
+          isPrivate: false
+          description: ""
+          sortKey: -1787549672484
+        method: POST
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: REDACTED
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: user
+    meta:
+      id: fld_5c8c171326dd4cf09ba7e80529414144
+      created: 1787549721600
+      modified: 1787551013027
+      sortKey: -1787549670275
+      description: ""
+    children:
+      - url: http://localhost:3000/api/user/
+        name: getUsers
+        meta:
+          id: req_ffa9d6c0e6894b4184ed464106765ebb
+          created: 1787549746347
+          modified: 1787549764518
+          isPrivate: false
+          description: ""
+          sortKey: -1787549747914
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: REDACTED
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/user/detail?id=7
+        name: getUser (id)
+        meta:
+          id: req_b2796bc1c8834ed8bff849e62631c194
+          created: 1787549804843
+          modified: 1787549841077
+          isPrivate: false
+          description: ""
+          sortKey: -1787549710299
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: REDACTED
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/user/detail?email=administrador2024@gmail.cl
+        name: getUser (email)
+        meta:
+          id: req_c2992da43afd454eb680277cbef04a36
+          created: 1787549845484
+          modified: 1787549857929
+          isPrivate: false
+          description: ""
+          sortKey: -1787549691491.5
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: REDACTED
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/user/detail?rut=21.151.897-9
+        name: getUser (rut)
+        meta:
+          id: req_dfd99bc2812f4012bbf1cf60f8ea956f
+          created: 1787549865228
+          modified: 1787549877707
+          isPrivate: false
+          description: ""
+          sortKey: -1787549682087.75
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: REDACTED
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/user/detail?id=1
+        name: updateUser
+        meta:
+          id: req_ba5fac2369864581835caede410cf092
+          created: 1787550001610
+          modified: 1787550051261
+          isPrivate: false
+          description: ""
+          sortKey: -1787549677385.875
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nombreCompleto":"Roger Andrés Venegas Opazo"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: REDACTED
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/user/detail?id=8
+        name: deleteUser
+        meta:
+          id: req_3870abb028524f169e9665f661afb8c3
+          created: 1787550073580
+          modified: 1787550083067
+          isPrivate: false
+          description: ""
+          sortKey: -1787549675034.9375
+        method: DELETE
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: REDACTED
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: pet
+    meta:
+      id: fld_5cf0ec11b0c94897aeca2f93cf198bbd
+      created: 1787550998712
+      modified: 1787551010154
+      sortKey: -1787549670225
+      description: ""
+    children:
+      - url: http://localhost:3000/api/pet/getmany?species=PERRO
+        name: getManyPets
+        meta:
+          id: req_ddcfccf0751e4f7580b51ccfc75719f1
+          created: 1787551051349
+          modified: 1787551517461
+          isPrivate: false
+          description: ""
+          sortKey: -1787551053676
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: REDACTED
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/pet/get/1
+        name: getPet
+        meta:
+          id: req_5f19b8f026784a919d658640a77af692
+          created: 1787554089515
+          modified: 1787554097723
+          isPrivate: false
+          description: ""
+          sortKey: -1787550400795
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: REDACTED
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/pet/create
+        name: createPet
+        meta:
+          id: req_b208b12fe43149db9111eaf777d98cd7
+          created: 1787554114624
+          modified: 1787554329563
+          isPrivate: false
+          description: ""
+          sortKey: -1787550074354.5
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name":"fido",
+            	"date_of_birth":"2000-10-10",
+            	"species":"PERRO",
+            	"breed":"rottwelier",
+            	"price":1000,
+            	"description":"no sabe jugar al atrapa",
+            	"neutered":true,
+            	"vaccinated":true,
+            	"special_needs":false,
+            	"declawed":false,
+            	"color":"FFFFFF"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: REDACTED
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/pet/update/1
+        name: updatePet
+        meta:
+          id: req_c944d9ef23cc49838a91dfb6d459ecd7
+          created: 1787554358805
+          modified: 1787554371763
+          isPrivate: false
+          description: ""
+          sortKey: -1787549911134.25
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name":"mario"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: REDACTED
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/pet/delete/1
+        name: deletePet
+        meta:
+          id: req_2700d817d0bf4c5493b8c8098c1ff12b
+          created: 1787554404663
+          modified: 1787554409437
+          isPrivate: false
+          description: ""
+          sortKey: -1787549829524.125
+        method: DELETE
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: REDACTED
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/pet/adopt/2
+        name: adoptPet
+        meta:
+          id: req_076cbcd8d95140f6b35d1a556c93a3a1
+          created: 1787554440767
+          modified: 1787554463614
+          isPrivate: false
+          description: ""
+          sortKey: -1787549788719.0625
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: REDACTED
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_4d8f5b377070f16826b456658812cfaa9daf307e
+    created: 1787529977084
+    modified: 1787549584725
+  cookies:
+    - id: 05dc28e1-3a44-49c1-b825-decac283bafb
+      key: jwt
+      value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub21icmVDb21wbGV0byI6IkRpZWdvIEFsZXhpcyBTYWxhemFyIEphcmEiLCJlbWFpbCI6ImFkbWluaXN0cmFkb3IyMDI0QGdtYWlsLmNsIiwicnV0IjoiMjEuMzA4Ljc3MC0zIiwicm9sIjoiYWRtaW5pc3RyYWRvciIsImlhdCI6MTc4NzU0OTU4NCwiZXhwIjoxNzg3NjM1OTg0fQ.FiA3gIrg6qKtOA7UjXwQo11s1ImSWz2lHcisX0u8jCc
+      domain: localhost
+      path: /
+      secure: false
+      httpOnly: true
+      hostOnly: true
+environments:
+  name: Base Environment
+  meta:
+    id: env_4d8f5b377070f16826b456658812cfaa9daf307e
+    created: 1787529977083
+    modified: 1787529977083
+    isPrivate: false
