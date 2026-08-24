@@ -14,6 +14,7 @@ import {
   handleErrorServer,
   handleSuccess,
 } from "../handlers/responseHandlers.js";
+import { DEFAULT_OWNER } from "../constants/pet.constants.js";
 
 export async function getUser(req, res) {
   try {
@@ -94,6 +95,10 @@ export async function updateUser(req, res) {
 export async function deleteUser(req, res) {
   try {
     const { rut, id, email } = req.query;
+
+    if (id && (id === DEFAULT_OWNER)) {
+      return handleErrorClient(res, 400, "No se puede eliminar al dueño por defecto", null);
+    }
 
     const { error: queryError } = userQueryValidation.validate({
       rut,
