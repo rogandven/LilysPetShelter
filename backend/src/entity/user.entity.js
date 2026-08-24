@@ -65,6 +65,13 @@ const UserSchema = new EntitySchema({
       unique: true,
     },
   ],
+  relations: {
+    owner: {
+      type: "one-to-many",
+      target: "Pet",
+      inverseSide: "pets",
+    }
+  }  
 });
 
 export default UserSchema;
