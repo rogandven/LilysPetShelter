@@ -1,4 +1,4 @@
-import { ObjectSchema } from "joi";
+import type { ObjectSchema } from "joi";
 
 export const validationHelper = (input: any, arr: ObjectSchema<any>[]): string | undefined => {
     let error: string | undefined = undefined;

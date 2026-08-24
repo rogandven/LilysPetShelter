@@ -4,6 +4,8 @@ import { handleErrorClient, handleErrorServer, handleSuccess } from "../handlers
 import { adoptPetService, createPetService, deletePetService, getManyPetsService, getPetService, updatePetService 
 } from "../services/pet.service.js";
 import { getPrintableId } from "../utils/service.utils.ts";
+import { validationHelper } from "../utils/validation.utils.ts";
+import { petIntegrityValidation, petRegisterValidation } from "../validations/pet.validation.js";
 
 export async function getPet(req, res) {
   try {
@@ -32,6 +34,9 @@ export async function getManyPets(req, res) {
 
 export async function createPet(req, res) {
   try {
+    const validationResult = validationHelper(req?.body || {}, [petRegisterValidation, petIntegrityValidation]);
+
+
     const serviceResult = await createPetService(req.body);
     if (serviceResult.isSuccess()) {
       return handleSuccess(res, serviceResult.statusCode, serviceResult.message, serviceResult.data);

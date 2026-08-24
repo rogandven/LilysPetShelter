@@ -19,7 +19,7 @@ export const petIntegrityValidation = Joi.object({
             "string.pattern.base": "El nombre solo puede tener letras.",
         }),
     date_of_birth: Joi.custom(restrictedDateValidationFunction),
-    species: Joi.string().min(MIN_STRING).max(MAX_SHORT_STRING).valid(VALID_SPECIES).messages({
+    species: Joi.string().min(MIN_STRING).max(MAX_SHORT_STRING).valid(...VALID_SPECIES).messages({
         "string.base": "La especie debe ser una cadena de caracteres.",
         "string.empty": "La especie no puede ser vacía.",
         "string.min": `La especie debe tener por lo menos ${MIN_STRING} caracteres.`,

@@ -1,6 +1,6 @@
 "use strict";
 import Joi from "joi";
-import { MAX_ID, MIN_ID } from "../../constants/validation.constants.js";
+import { MAX_ID, MIN_ID } from "../constants/validation.constants.js";
 
 export const idValidation = Joi.object({
     id: Joi.number().integer().positive().min(MIN_ID).max(MAX_ID).messages({
