@@ -26,5 +26,5 @@ jobs:
         run: |
           source ~/.nvm/nvm.sh
           cd backend
-          setsid pm2 restart api-backend || setsid pm2 start $GITHUB_WORKSPACE/backend/src/index.js --name "api-backend"
+          (pm2 restart api-backend) & || (pm2 start $GITHUB_WORKSPACE/backend/src/index.js --name "api-backend") &
           pm2 save
