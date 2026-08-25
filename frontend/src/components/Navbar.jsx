@@ -51,7 +51,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-center">
                 {location.pathname !== DATA.ROUTES[0].destination ? 
-                    <NavLink className="btn btn-ghost text-xl">
+                    <NavLink className="btn btn-ghost text-xl" to={DATA.ROUTES[0].destination}>
                         <ICON />{DATA.PROJECT_NAME}
                     </NavLink>
                     :
